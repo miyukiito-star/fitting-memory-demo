@@ -25,6 +25,9 @@ h1 { font-weight:400; line-height:1.45; letter-spacing:.02em; }
 .price { font:12px Arial,sans-serif; letter-spacing:.03em; }
 .start-screen { padding-top:9px; }
 .start-art { height:31vh; min-height:220px; position:relative; margin:0 -24px 42px; overflow:hidden; background:#e6e0d5; }
+.start-art-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 43%; opacity:0; transition:opacity .35s ease; }
+.start-art.has-hero-image .start-art-image { opacity:1; }
+.start-art.has-hero-image .mirror { display:none; }
 .start-art>span { position:absolute; top:19px; left:24px; font:8px Arial,sans-serif; letter-spacing:.16em; }
 .start-art>p { position:absolute; bottom:16px; left:24px; margin:0; font:10px/1.55 Arial,sans-serif; letter-spacing:.16em; }
 .mirror { position:absolute; width:45%; height:125%; right:13%; top:15%; border:1px solid rgba(75,69,60,.32); border-radius:50% 50% 0 0; background:#c8c0b2; }

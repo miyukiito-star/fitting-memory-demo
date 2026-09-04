@@ -50,6 +50,7 @@ export default function App() {
   const [drawer, setDrawer] = useState(false)
   const [cameraError, setCameraError] = useState('')
   const [toast, setToast] = useState('')
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => { localStorage.setItem(STORAGE, JSON.stringify({ screen, fittings, scanCount, pendingId, editingId })) }, [screen, fittings, scanCount, pendingId, editingId])
@@ -102,7 +103,17 @@ export default function App() {
 
   let content:React.ReactNode
   if(screen==='start') content=<main className="start-screen fade-in">
-    <div className="start-art"><span>FITTING  /  MEMORY</span><div className="mirror"><i/></div><p>KEEP THE<br/>FEELING</p></div>
+    <div className={`start-art${heroImageLoaded ? ' has-hero-image' : ''}`}>
+      <img
+        className="start-art-image"
+        src={`${import.meta.env.BASE_URL}assets/fitting-memory-hero.jpg`}
+        alt=""
+        aria-hidden="true"
+        onLoad={() => setHeroImageLoaded(true)}
+        onError={() => setHeroImageLoaded(false)}
+      />
+      <span>FITTING  /  MEMORY</span><div className="mirror"><i/></div><p>KEEP THE<br/>FEELING</p>
+    </div>
     <p className="eyebrow">YOUR PERSONAL FITTING LOG</p><h1>FITTING<br/>MEMORY</h1><h2>試着を、その場だけの<br/>体験にしない。</h2><p className="intro">試したアイテムと、そのとき感じたことを記録。<br/>あとからゆっくり、比較・検討できます。</p>
     <button className="primary" onClick={()=>setScreen('scan')}>試着アイテムを登録する <Arrow/></button>{fittings.length>0&&<button className="text-button centered" onClick={()=>setScreen('my-fitting')}>MY FITTINGを見る</button>}
   </main>
